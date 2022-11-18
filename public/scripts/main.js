@@ -30,7 +30,7 @@ async function fetchData(route = '', data = {}, GET) {
   }
   
   // user class
-  class User {
+  class Users {
     constructor(firstname, lastname, username, password) {
       this.firstname = firstname;
       this.lastame = lastame;
@@ -53,7 +53,7 @@ async function fetchData(route = '', data = {}, GET) {
   
     let userName = document.getElementById("username").value;
     let password = document.getElementById("pswd").value;
-    let users = new User(userName, password);
+    let users = new Users(userName, password);
   
     fetchData("/users/login", users, "POST")
     .then((data) => {
