@@ -1,4 +1,5 @@
 document.getElementById("btn-users").addEventListener('click', getUsers);
+document.getElementById("btn-notes").addEventListener('click', getNotes);
 
 function getUsers() {
   fetch("http://localhost:3000/users/")
@@ -7,6 +8,12 @@ function getUsers() {
   .catch((err)=> console.log(err))
 }
 
+function getNotes() {
+  fetch("http://localhost:3000/notes/")
+  .then((res)=> res.json())
+  .then((data) => console.log(data))
+  .catch((err)=> console.log(err))
+}
 
 // Fetch method implementation:
 async function fetchData(route = '', data = {}, GET) {
