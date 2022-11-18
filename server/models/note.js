@@ -21,13 +21,13 @@ const notes = [
     return notes;
   }
   
-//   function login(user) { // {userName: "sda", password: "gsdhjsga"}
-//     let cUser = users.filter( u => u.userName === user.userName);
+  function Notes(note) { // {userName: "sda", password: "gsdhjsga"}
+    let Unotes = notes.filter( u => u.note === notes.note);
     
-//     if(!cUser[0]) throw Error("Username not found");
-//     if(cUser[0].password !== user.password) throw Error("Password incorrect");
+    if(!Unotes[0]) throw Error("Note not found");
+    // if(cUser[0].password !== user.password) throw Error("Password incorrect");
   
-//     return cUser[0];
-//   }
+    return Unotes[0];
+  }
   
-  module.exports = { getNotes};
+  module.exports = { getNotes, Notes};

@@ -1,5 +1,11 @@
 document.getElementById("btn-users").addEventListener('click', getUsers);
-document.getElementById("btn-notes").addEventListener('click', getNotes);
+
+var nts = document.getElementById("btn-notes");
+if(nts){
+  nts.addEventListener('click', getNotes);
+}
+
+// document.getElementById("btn-notes").addEventListener('click', getNotes);
 
 function getUsers() {
   fetch("http://localhost:3000/users/")
@@ -38,11 +44,12 @@ async function fetchData(route = '', data = {}, GET) {
   
   // user class
   class Users {
-    constructor(firstname, lastname, username, password) {
+    constructor(firstname, lastname, username, password, note) {
       this.firstname = firstname;
       this.lastame = lastame;
       this.username = username;
       this.password = password;
+      this.note = note;
     }
   
     getUsername() {
@@ -54,6 +61,9 @@ async function fetchData(route = '', data = {}, GET) {
   // grab the form, add event listener
   let loginForm = document.getElementById("login-form");
   if(loginForm) loginForm.addEventListener('submit', login);
+
+  let noteForm = document.getElementById("note_form");
+  if(noteForm) loginForm.addEventListener('submit', note);
   
   function login(e) {
     e.preventDefault();
@@ -65,10 +75,26 @@ async function fetchData(route = '', data = {}, GET) {
     fetchData("/users/login", users, "POST")
     .then((data) => {
       console.log(data);
-      window.location.href = "bmi.html";
+      window.location.href = "login.html";
     })
     .catch((err) => {
       console.log(`Error!!! ${err.message}`)
     }) 
+  }
+
+  function note(e) {
+    e.preventDefault();
   
+    let username = document.getElementById("username").value;
+    let note = document.getElementById("note").value;
+    let notes = new Users(username, note);
+  
+    fetchData("/note/Notes", users, "POST")
+    .then((data) => {
+      console.log(data);
+      window.location.href = "note.html";
+    })
+    .catch((err) => {
+      console.log(`Error!!! ${err.message}`)
+    })
   }
