@@ -1,0 +1,56 @@
+h4{
+    text-align: center;
+    color:darkred;
+}
+
+body{
+    color:darkred;
+    text-align: center;
+    background-position:60% 50%;
+    background-repeat: no-repeat;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+}
+
+header h1 { 
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.active {
+    color: black;
+    background-color: rgb(239, 240, 242);
+}
+
+#more {
+    color: rgb(156, 202, 184);
+    text-align:center;
+}
+
+#more h6 {
+    color: rgb(185, 22, 49);
+}
+
+#notes {
+    text-size-adjust: auto;
+}
+
+.container {
+    display: flex-example;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+nav{
+    justify-content: space-evenly;
+    justify-self: unset;
+}
+
+.attention {
+    color: hotpink;
+}
+
+p{
+    border-style:initial;
+}
