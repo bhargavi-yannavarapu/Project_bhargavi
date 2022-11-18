@@ -1,18 +1,21 @@
 // "database" as object literal
 const users = [
     {
-      userId: 12345,
-      userName: "cathy123",
+      firstname:"Cathy",
+      lastname:"H",
+      username: "cathy123",
       password: "icecream"
     },
     {
-      userId: 55555,
-      userName: "fredburger",
+      firstname:"Fred",
+      lastname:"B",
+      username: "fredburger",
       password: "badpassword"
     },
     {
-      userId: 23412,
-      userName: "bobbyjones",
+      firstname:"Bobby",
+      lastname:"J",
+      username: "bobbyjones",
       password: "hi"
     }
   ];
