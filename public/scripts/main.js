@@ -89,7 +89,7 @@ async function fetchData(route = '', data = {}, GET) {
     let note = document.getElementById("note").value;
     let notes = new Users(username, note);
   
-    fetchData("/note/Notes", users, "POST")
+    fetchData("/note/Notes", notes, "POST")
     .then((data) => {
       console.log(data);
       window.location.href = "note.html";
