@@ -1,4 +1,4 @@
-document.getElementById("btn-users").addEventListener('click', getUsers);
+// document.getElementById("btn-users").addEventListener('click', getUsers);
 
 // var nts = document.getElementById("btn-notes");
 // if(nts){
