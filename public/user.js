@@ -32,14 +32,14 @@ function LoginObject(e){
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
     const login_object = new User(username,password);
-    fetchData("/users/login", user, "POST")
-    .then((data) => {
-        console.log(data);
-        window.location.href = "bmi.html";
-    })
-    .catch((err) => {
-        console.log(`Error!!! ${err.message}`)
-    }) 
+    // fetchData("/users/login", user, "POST")
+    // .then((data) => {
+    //     console.log(data);
+    //     window.location.href = "bmi.html";
+    // })
+    // .catch((err) => {
+    //     console.log(`Error!!! ${err.message}`)
+    // }) 
 
     console.log(login_object);
 

@@ -21,8 +21,8 @@ const notes = [
     return notes;
   }
   
-  function Notes(note) { // {userName: "sda", password: "gsdhjsga"}
-    let Unotes = notes.filter( u => u.note === notes.note);
+  function note(note) { // {userName: "sda", password: "gsdhjsga"}
+    let Unotes = notes.filter( u => u.note === note.note);
     
     if(!Unotes[0]) throw Error("Note not found");
     // if(cUser[0].password !== user.password) throw Error("Password incorrect");
@@ -30,4 +30,4 @@ const notes = [
     return Unotes[0];
   }
   
-  module.exports = { getAllNotes, Notes};
+  module.exports = { getAllNotes, note};

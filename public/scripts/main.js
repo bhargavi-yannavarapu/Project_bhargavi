@@ -55,6 +55,10 @@ async function fetchData(route = '', data = {}, GET) {
     getUsername() {
       return this.username;
     }
+
+    getNote() {
+      return this.note;
+    }
     
   }
   
@@ -68,9 +72,9 @@ async function fetchData(route = '', data = {}, GET) {
   function login(e) {
     e.preventDefault();
   
-    let userName = document.getElementById("username").value;
-    let password = document.getElementById("pswd").value;
-    let users = new Users(userName, password);
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let users = new Users(username, password);
   
     fetchData("/users/login", users, "POST")
     .then((data) => {

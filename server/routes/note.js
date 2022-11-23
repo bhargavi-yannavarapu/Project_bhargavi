@@ -14,7 +14,7 @@ router
 
   .post('/notes', async (req, res) => {
     try {
-      let no_te = await NoTe.Notes(req.body);
+      let no_te = await NoTe.note(req.body);
       res.send({...no_te})
     } catch(err) {
       res.status(401).send({message: err.message});

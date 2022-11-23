@@ -25,7 +25,7 @@ function getAllUsers() {
 }
 
 function login(user) { // {userName: "sda", password: "gsdhjsga"}
-  let cUser = users.filter( u => u.userName === user.userName);
+  let cUser = users.filter( u => u.username === user.username);
   
   if(!cUser[0]) throw Error("Username not found");
   if(cUser[0].password !== user.password) throw Error("Password incorrect");
