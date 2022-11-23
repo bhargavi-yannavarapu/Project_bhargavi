@@ -5,6 +5,9 @@
 //   nts.addEventListener('click', getNotes);
 // }
 
+const users_button = document.getElementById("btn-users");
+if(users_button) users_button.addEventListener("click", getUsers);
+
 document.getElementById("btn-notes").addEventListener('click', getNotes);
 
 function getUsers() {
