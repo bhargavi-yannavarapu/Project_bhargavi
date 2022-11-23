@@ -17,7 +17,7 @@ const notes = [
     }
   ];
   
-  function getNotes() {
+  function getAllNotes() {
     return notes;
   }
   
@@ -30,4 +30,4 @@ const notes = [
     return Unotes[0];
   }
   
-  module.exports = { getNotes, Notes};
+  module.exports = { getAllNotes, Notes};

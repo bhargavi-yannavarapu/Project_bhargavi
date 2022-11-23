@@ -1,11 +1,11 @@
 document.getElementById("btn-users").addEventListener('click', getUsers);
 
-var nts = document.getElementById("btn-notes");
-if(nts){
-  nts.addEventListener('click', getNotes);
-}
+// var nts = document.getElementById("btn-notes");
+// if(nts){
+//   nts.addEventListener('click', getNotes);
+// }
 
-// document.getElementById("btn-notes").addEventListener('click', getNotes);
+document.getElementById("btn-notes").addEventListener('click', getNotes);
 
 function getUsers() {
   fetch("http://localhost:3000/users/")
@@ -46,7 +46,7 @@ async function fetchData(route = '', data = {}, GET) {
   class Users {
     constructor(firstname, lastname, username, password, note) {
       this.firstname = firstname;
-      this.lastame = lastame;
+      this.lastname = lastname;
       this.username = username;
       this.password = password;
       this.note = note;
@@ -89,7 +89,7 @@ async function fetchData(route = '', data = {}, GET) {
     let note = document.getElementById("note").value;
     let notes = new Users(username, note);
   
-    fetchData("/note/Notes", notes, "POST")
+    fetchData("/notes/note", notes, "POST")
     .then((data) => {
       console.log(data);
       window.location.href = "note.html";
