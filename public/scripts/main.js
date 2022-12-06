@@ -107,6 +107,8 @@ async function fetchData(route = '', data = {}, GET) {
     })
   }
 
+
+/* 
 // register functionality
   let regForm = document.getElementById("reg-form");
   if(regForm) regForm.addEventListener('submit', register);
@@ -151,3 +153,4 @@ async function fetchData(route = '', data = {}, GET) {
   function removeCurrentUser(){
     localStorage.removeItem('user')
   }
+*/
