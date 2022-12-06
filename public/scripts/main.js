@@ -47,10 +47,10 @@ async function fetchData(route = '', data = {}, GET) {
   
   // user class
   class Users {
-    constructor(firstname, lastname, username, password, note) {
-      this.firstname = firstname;
-      this.lastname = lastname;
-      this.username = username;
+    constructor(firstName, lastName, userName, password, note) {
+      this.firstName = firstname;
+      this.lastName = lastname;
+      this.userName = username;
       this.password = password;
       this.note = note;
     }
@@ -65,7 +65,7 @@ async function fetchData(route = '', data = {}, GET) {
     
   }
   
-  // grab the form, add event listener
+  // grab the form, add event listener // login functionality
   let loginForm = document.getElementById("login-form");
   if(loginForm) loginForm.addEventListener('submit', login);
 
@@ -81,6 +81,7 @@ async function fetchData(route = '', data = {}, GET) {
   
     fetchData("/users/login", users, "POST")
     .then((data) => {
+      setCurrentUser(data);
       console.log(data);
       window.location.href = "login.html";
     })
@@ -104,4 +105,49 @@ async function fetchData(route = '', data = {}, GET) {
     .catch((err) => {
       console.log(`Error!!! ${err.message}`)
     })
+  }
+
+// register functionality
+  let regForm = document.getElementById("reg-form");
+  if(regForm) regForm.addEventListener('submit', register);
+
+  function register(e){
+    e.preventDefault();
+    let userName = document.getElementById("username").value();
+    let password = document.getElementById("password").value();
+    let firstName = document.getElementById("firstname").value();
+    let lastName = document.getElementById("lastname").value();
+    let user = new Users(firstName, lastName, userName, password);
+    
+    console.log(user)
+
+    fetchData("/users/register", user, "POST")
+    .then((data) => {
+      setCurrentUser(data);
+      console.log(data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+
+  // for local storage.
+  // stateful mechanism for user
+  // logging in a user.
+  function setCurrentUser(user){
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  //getting current user function
+  function getCurrentUser(){
+    return JSON.parse(localStorage.getItem('user'));
+  }
+  console.log("Current user : " + getCurrentUser())
+
+  //logging out
+  let logout = document.getElementById("logout-btn");
+  if(logout) logout.addEventListener('click', removeCurrentUser)
+  
+  function removeCurrentUser(){
+    localStorage.removeItem('user')
   }
