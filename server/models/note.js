@@ -49,12 +49,11 @@ async function getAllNotes() {
 async function insertNote(note) {
   console.log(note)
   let cNote = await getNote(note);
-  if(cNote.length > 0) throw Error("Note already exists");
-  const sql = `INSERT INTO notes (noteContent, noteID)
-    VALUES ('${note.noteContent}', ${note.noteID});
+  if(cNote.length > 0);
+  const sql = `INSERT INTO notes (noteContent, userID)
+    VALUES ('${note.noteContent}', ${note.userID});
   `
-  await con.query(sql);
-  return await login(note);
+  return await con.query(sql);
 }
  
 
@@ -63,7 +62,7 @@ async function editNote(note) {
   console.log(note)
   let sql = `UPDATE notes 
     SET noteContent = "${note.noteContent}"
-    WHERE noteID = ${note.noteID}
+    WHERE userID = ${note.userID}
   `;
   await con.query(sql);
   let updatedNote = await getNote(note);
@@ -89,11 +88,10 @@ function note(note) { // {userName: "sda", password: "gsdhjsga"}
 
 async function getNote(note) {
   let sql;
-
   if(note.noteID) {
     sql = `
       SELECT * FROM notes
-        WHERE noteID = ${note.noteID}
+        WHERE userID = ${note.userID}
     `
   } else {
     sql = `

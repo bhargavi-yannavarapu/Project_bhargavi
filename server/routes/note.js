@@ -33,7 +33,7 @@ router
   .put('/editnote', async (req, res) => {
     try {
       let note = await NoTe.editNote(req.body);
-      res.send({...note, password:undefined});
+      res.send({...note});
     } catch(err) {
       res.status(401).send({message: err.message})
     }
