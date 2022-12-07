@@ -11,6 +11,17 @@ router
       res.status(401).send({message: err.message});
     }
   })
+  
+/*
+  .get('/getuser', async (req, res) => {
+    try {
+      const user = await User.getUser();
+      res.send(...user);
+    } catch(err){
+      res.status(401).send({message:err.message});
+    }
+  })
+*/
 
   .post('/login', async (req, res) => {
     try {
@@ -33,7 +44,7 @@ router
   .put('/edit', async (req, res) => {
     try {
       let user = await User.editUser(req.body);
-      res.send({...user, password: undefined});
+      res.send({...user, password:undefined});
     } catch(err) {
       res.status(401).send({message: err.message})
     }

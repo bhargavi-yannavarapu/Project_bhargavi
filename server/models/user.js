@@ -2,9 +2,9 @@
 
 const con = require("./db_connect");
 
-let configuration = {
-  database: "application" //name -> database is required
-};
+// let configuration = {
+//   database: "application" //name -> database is required
+// };
 
 async function createTable(){
   let sql = `CREATE TABLE IF NOT EXISTS users(
@@ -57,7 +57,6 @@ async function getAllUsers() {
 async function register(user) {
   let cUser = await getUser(user);
   if(cUser.length > 0) throw Error("Username already in use");
-
   const sql = `INSERT INTO users (userName, password, firstName, lastName)
     VALUES ("${user.userName}", "${user.password}", "${user.firstName}", "${user.lastName}");
   `
@@ -77,11 +76,11 @@ function login(user) { // {userName: "sda", password: "gsdhjsga"}
 
 // Update User function
 async function editUser(user) {
+  console.log(user)
   let sql = `UPDATE users 
     SET userName = "${user.userName}"
     WHERE userID = ${user.userID}
   `;
-
   await con.query(sql);
   let updatedUser = await getUser(user);
   return updatedUser[0];
@@ -113,4 +112,4 @@ async function getUser(user) {
   return await con.query(sql);  
 }
 
-module.exports = { getAllUsers, login, createTable,  register, editUser, deleteUser};
+module.exports = { getAllUsers, getUser, login, createTable,  register, editUser, deleteUser};
