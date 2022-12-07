@@ -46,7 +46,7 @@ async function getAllNotes() {
   //   return notes;
   // }
 
-async function insertNotes(note) {
+async function insertNote(note) {
   console.log(note)
   let cNote = await getNote(note);
   if(cNote.length > 0) throw Error("Note already exists");
@@ -56,31 +56,52 @@ async function insertNotes(note) {
   await con.query(sql);
   return await login(note);
 }
-  
-  function note(note) { // {userName: "sda", password: "gsdhjsga"}
-    let Unotes = notes.filter( u => u.note === note.note);
-    
-    if(!Unotes[0]) throw Error("Note not found");
-    // if(cUser[0].password !== user.password) throw Error("Password incorrect");
-  
-    return Unotes[0];
-  }
+ 
 
-  async function getNote(note) {
-    let sql;
+// Update User function
+async function editNote(note) {
+  console.log(note)
+  let sql = `UPDATE notes 
+    SET noteContent = "${note.noteContent}"
+    WHERE noteID = ${note.noteID}
+  `;
+  await con.query(sql);
+  let updatedNote = await getNote(note);
+  return updatedNote[0];
+}
+
+// Delete User function
+async function deleteNote(note) {
+  let sql = `DELETE FROM notes
+    WHERE noteID = ${note.noteID}
+  `
+  await con.query(sql);
+}
+
+function note(note) { // {userName: "sda", password: "gsdhjsga"}
+  let Unotes = notes.filter( u => u.note === note.note);
   
-    if(note.noteID) {
-      sql = `
-        SELECT * FROM notes
-         WHERE noteID = ${note.noteID}
-      `
-    } else {
-      sql = `
-      SELECT * FROM notes 
-        WHERE noteContent = "${note.noteContent}"
-    `;
-    }
-    return await con.query(sql);  
+  if(!Unotes[0]) throw Error("Note not found");
+  // if(cUser[0].password !== user.password) throw Error("Password incorrect");
+
+  return Unotes[0];
+}
+
+async function getNote(note) {
+  let sql;
+
+  if(note.noteID) {
+    sql = `
+      SELECT * FROM notes
+        WHERE noteID = ${note.noteID}
+    `
+  } else {
+    sql = `
+    SELECT * FROM notes 
+      WHERE noteContent = "${note.noteContent}"
+  `;
   }
+  return await con.query(sql);  
+}
   
-  module.exports = { getAllNotes, note, getNote, insertNotes};
+module.exports = { getAllNotes, note, getNote, insertNote, editNote, deleteNote};
