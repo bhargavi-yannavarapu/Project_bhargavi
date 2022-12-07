@@ -45,6 +45,17 @@ async function getAllNotes() {
   // function getAllNotes() {
   //   return notes;
   // }
+
+async function insertNotes(note) {
+  console.log(note)
+  let cNote = await getNote(note);
+  if(cNote.length > 0) throw Error("Note already exists");
+  const sql = `INSERT INTO notes (noteContent, noteID)
+    VALUES ('${note.noteContent}', ${note.noteID});
+  `
+  await con.query(sql);
+  return await login(note);
+}
   
   function note(note) { // {userName: "sda", password: "gsdhjsga"}
     let Unotes = notes.filter( u => u.note === note.note);
@@ -54,5 +65,22 @@ async function getAllNotes() {
   
     return Unotes[0];
   }
+
+  async function getNote(note) {
+    let sql;
   
-  module.exports = { getAllNotes, note};
+    if(note.noteID) {
+      sql = `
+        SELECT * FROM notes
+         WHERE noteID = ${note.noteID}
+      `
+    } else {
+      sql = `
+      SELECT * FROM notes 
+        WHERE noteContent = "${note.noteContent}"
+    `;
+    }
+    return await con.query(sql);  
+  }
+  
+  module.exports = { getAllNotes, note, getNote, insertNotes};
