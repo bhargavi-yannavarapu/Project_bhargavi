@@ -5,6 +5,7 @@
 //   nts.addEventListener('click', getNotes);
 // }
 
+/*
 const users_button = document.getElementById("btn-users");
 if(users_button) users_button.addEventListener("click", getUsers);
 
@@ -23,11 +24,55 @@ function getNotes() {
   .then((data) => console.log(data))
   .catch((err)=> console.log(err))
 }
+*/
 
 // Fetch method implementation:
-async function fetchData(route = '', data = {}, GET) {
+//async function fetchData(route = '', data = {}, GET) {
+// export function fetchData(route = '', data = {}, GET) {
+//     const response = await fetch(`http://localhost:3000${route}`, {
+//       method: GET, // *GET, POST, PUT, DELETE, etc.
+//       mode: 'cors', // no-cors, *cors, same-origin
+//       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+//       credentials: 'same-origin', // include, *same-origin, omit
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       redirect: 'follow', // manual, *follow, error
+//       referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+//       body: JSON.stringify(data) // body data type must match "Content-Type" header
+//     });
+//     if(response.ok) {
+//       return await response.json(); // parses JSON response into native JavaScript objects
+//     } else {
+//       throw await response.json();
+//     }
+//   }
+  
+/*
+let nav = document.querySelector('nav');
+
+if(getCurrentUser()) {
+  nav.innerHTML = `
+    <ul>
+      <li><a href="note.html">Note</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a id="logout-btn">Logout</a></li>
+    </ul>
+  `
+} else {
+  nav.innerHTML = `
+    <ul>
+      <li><a href="note.html">Note</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="register.html">Sign Up</a></li>
+    </ul>
+  `
+}
+*/
+
+  export async function fetchData(route = '', data = {}, methodType) {
     const response = await fetch(`http://localhost:3000${route}`, {
-      method: GET, // *GET, POST, PUT, DELETE, etc.
+      method: methodType, // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
@@ -44,8 +89,10 @@ async function fetchData(route = '', data = {}, GET) {
       throw await response.json();
     }
   }
-  
+
+ 
   // user class
+  /*
   class Users {
     constructor(firstName, lastName, userName, password, note) {
       this.firstName = firstname;
@@ -107,8 +154,6 @@ async function fetchData(route = '', data = {}, GET) {
     })
   }
 
-
-/* 
 // register functionality
   let regForm = document.getElementById("reg-form");
   if(regForm) regForm.addEventListener('submit', register);
@@ -127,30 +172,36 @@ async function fetchData(route = '', data = {}, GET) {
     .then((data) => {
       setCurrentUser(data);
       console.log(data);
+      window.location.href = "note.html"
     })
     .catch((err)=>{
       console.log(err);
     })
   }
+*/
 
-  // for local storage.
-  // stateful mechanism for user
-  // logging in a user.
-  function setCurrentUser(user){
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  //getting current user function
-  function getCurrentUser(){
-    return JSON.parse(localStorage.getItem('user'));
-  }
-  console.log("Current user : " + getCurrentUser())
 
   //logging out
   let logout = document.getElementById("logout-btn");
   if(logout) logout.addEventListener('click', removeCurrentUser)
-  
-  function removeCurrentUser(){
-    localStorage.removeItem('user')
+
+  // for local storage.
+  // stateful mechanism for user
+  // logging in a user.
+  export function setCurrentUser(user){
+    localStorage.setItem('user', JSON.stringify(user));
   }
-*/
+
+  //getting current user function
+  export function getCurrentUser(){
+    return JSON.parse(localStorage.getItem('user'));
+  }
+  console.log("Current user : " + getCurrentUser())
+  
+  // let currentUser = getCurrentUser();
+  // console.log(currentUser);
+
+  export function removeCurrentUser(){
+    localStorage.removeItem('user')
+    window.location.href = "login.html";
+  }

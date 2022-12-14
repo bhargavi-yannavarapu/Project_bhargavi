@@ -54,3 +54,7 @@ nav{
 p{
     border-style:initial;
 }
+
+#logout-btn {
+    cursor: pointer;
+}
