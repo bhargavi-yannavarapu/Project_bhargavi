@@ -57,16 +57,16 @@ async function getAllUsers() {
 async function register(user) {
   let cUser = await getUser(user);
   if(cUser.length > 0) throw Error("Username already in use");
-  const sql = `INSERT INTO users (userName, password, firstName, lastName)
-    VALUES ("${user.userName}", "${user.password}", "${user.firstName}", "${user.lastName}");
+  const sql = `INSERT INTO users (userName, firstName, lastName, password)
+    VALUES ("${user.userName}", "${user.firstName}", "${user.lastName}", "${user.password}");
   `
   await con.query(sql);
   return await login(user);
 }
 
 // Read user - login user
-function login(user) { // {userName: "sda", password: "gsdhjsga"}
-  let cUser = users.filter( u => u.username === user.username);
+async function login(user) { // {userName: "sda", password: "gsdhjsga"}
+  let cUser = await getUser(user); 
   
   if(!cUser[0]) throw Error("Username not found");
   if(cUser[0].password !== user.password) throw Error("Password incorrect");

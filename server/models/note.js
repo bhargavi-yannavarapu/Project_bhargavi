@@ -93,12 +93,7 @@ async function getNote(note) {
       SELECT * FROM notes
         WHERE userID = ${note.userID}
     `
-  } else {
-    sql = `
-    SELECT * FROM notes 
-      WHERE noteContent = "${note.noteContent}"
-  `;
-  }
+  } 
   return await con.query(sql);  
 }
   
