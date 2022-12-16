@@ -25,10 +25,10 @@ function login(e) {
   let password = document.getElementById("password").value;
   let user = new User(userName, password);
 
-  fetchData("/users/login", user, "POST")
+  fetchData("/users/login/", user, "POST")
   .then((data) => {
     setCurrentUser(data);
-    window.location.href = "../note.html"   //"..note.html";
+    window.location.replace = "note.html"
   })
   .catch((err) => {
     let p = document.querySelector('.error');
@@ -49,10 +49,10 @@ function register(e) {
   let lastName = document.getElementById("lastname").value;
   let user = new User(userName, password, firstName, lastName);
 
-  fetchData("/users/register", user, "POST")
+  fetchData("/users/register/", user, "POST")
   .then((data) => {
     setCurrentUser(data);
-    window.location.href = "login.html";
+    window.location.replace = "http://www.w3schools.com";
   })
   .catch((err) =>{
     let p = document.querySelector('.error');
