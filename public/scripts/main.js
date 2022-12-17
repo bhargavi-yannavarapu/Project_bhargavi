@@ -26,6 +26,7 @@ function getNotes() {
 }
 */
 
+/*
 let nav = document.querySelector('nav');
 
 if(getCurrentUser()) {
@@ -45,7 +46,7 @@ if(getCurrentUser()) {
     </ul>
   `
 }
-
+*/
 
 // Fetch method implementation:
 export async function fetchData(route = '', data = {}, methodType) {

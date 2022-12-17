@@ -38,8 +38,8 @@ const notes = [
 // grabbing all users in database
 async function getAllNotes() {
   const sql = `SELECT * FROM notes;`;
-  let notes = await con.query(sql);
-  console.log(notes)
+    // console.log(notes)
+  return await con.query(sql)
 }
 
   // function getAllNotes() {
@@ -47,13 +47,14 @@ async function getAllNotes() {
   // }
 
 async function insertNote(note) {
-  console.log(note)
+  console.log("line no 50",note)
   let cNote = await getNote(note);
   if(cNote.length > 0);
   const sql = `INSERT INTO notes (noteContent, userID)
     VALUES ('${note.noteContent}', ${note.userID});
   `
-  return await con.query(sql);
+  await con.query(sql);
+  return await getNote(note);
 }
  
 
@@ -88,13 +89,11 @@ function note(note) { // {userName: "sda", password: "gsdhjsga"}
 
 async function getNote(note) {
   let sql;
-  if(note.noteID) {
     sql = `
       SELECT * FROM notes
         WHERE userID = ${note.userID}
     `
+    return await con.query(sql);  
   } 
-  return await con.query(sql);  
-}
   
 module.exports = { getAllNotes, note, getNote, insertNote, editNote, deleteNote};
